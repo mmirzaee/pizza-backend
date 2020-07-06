@@ -61,6 +61,16 @@ $config = [
                 'OPTIONS <x1:\w+>/<x2:\w+>/<x3:\w+>/<x4:\w+>/<x5:\w+>' => 'auth/options',
                 '' => 'site/index',
                 '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'items',
+                    'pluralize' => false
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'orders',
+                    'pluralize' => false
+                ],
             ],
         ],
     ],
