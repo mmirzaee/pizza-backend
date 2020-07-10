@@ -138,7 +138,7 @@ class AuthController extends Controller
         return $user;
     }
 
-    public function actionMe()
+    public function actionProfile()
     {
         $user = User::findOne(\Yii::$app->user->getIdentity()->getId());
         return [
