@@ -2,8 +2,10 @@
 
 namespace app\controllers;
 
+use app\models\Items;
 use app\models\User;
 use sizeg\jwt\JwtHttpBearerAuth;
+use yii\data\ActiveDataProvider;
 use yii\filters\Cors;
 use yii\rest\ActiveController;
 use yii\web\ForbiddenHttpException;
@@ -41,5 +43,19 @@ class ItemsController extends ActiveController
                 throw new ForbiddenHttpException(sprintf('You can\'t %s menu items.', $action));
             }
         }
+    }
+
+    public function actions(){
+        $actions = parent::actions();
+        unset($actions['index']);
+        return $actions;
+    }
+
+    public function actionIndex(){
+        $activeData = new ActiveDataProvider([
+            'query' => Items::find(),
+            'pagination' => false,
+        ]);
+        return $activeData;
     }
 }
