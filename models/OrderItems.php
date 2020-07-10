@@ -11,6 +11,7 @@ use Yii;
  * @property int $order_id
  * @property int $item_id
  * @property int $quantity
+ * @property string $unit_price
  */
 class OrderItems extends \yii\db\ActiveRecord
 {
@@ -28,8 +29,9 @@ class OrderItems extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['order_id', 'item_id'], 'required'],
+            [['order_id', 'item_id', 'unit_price'], 'required'],
             [['order_id', 'item_id', 'quantity'], 'integer'],
+            [['unit_price'], 'string', 'max' => 32],
         ];
     }
 
@@ -43,6 +45,7 @@ class OrderItems extends \yii\db\ActiveRecord
             'order_id' => 'Order ID',
             'item_id' => 'Item ID',
             'quantity' => 'Quantity',
+            'unit_price' => 'Unit Price',
         ];
     }
 }

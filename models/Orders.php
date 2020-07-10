@@ -15,6 +15,7 @@ use Yii;
  * @property string $full_name
  * @property int $created_at
  * @property int $updated_at
+ * @property string $total
  */
 class Orders extends \yii\db\ActiveRecord
 {
@@ -43,7 +44,7 @@ class Orders extends \yii\db\ActiveRecord
             [['user_id', 'status', 'created_at', 'updated_at'], 'integer'],
             [['address'], 'string', 'max' => 255],
             [['mobile'], 'string', 'max' => 16],
-            [['full_name'], 'string', 'max' => 64],
+            [['full_name', 'total'], 'string', 'max' => 64],
         ];
     }
 
@@ -61,6 +62,7 @@ class Orders extends \yii\db\ActiveRecord
             'full_name' => 'Full Name',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
+            'total' => 'Total',
         ];
     }
 }

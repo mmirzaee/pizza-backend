@@ -84,6 +84,20 @@ class OrdersController extends ActiveController
 
     public function actionHistory()
     {
+        $orders = Orders::find()->where(['user_id' => \Yii::$app->user->getIdentity()->getId()])->orderBy('updated_at DESC')->all();
+        $ret = [];
+        foreach ($orders as $order) {
+            $ret[] = [
+                'created_at' => date('Y/m/d H:i:s', $order->created_at),
+                'address' => $order->address,
+                'mobile' => $order->mobile,
+                'full_name' => $order->full_name,
+                'total' => $order->total,
+                'status' => $order->status,
+            ];
 
+        }
+
+        return $ret;
     }
 }
