@@ -30,7 +30,7 @@ class Items extends \yii\db\ActiveRecord
     {
         return [
             [['title', 'price'], 'required'],
-            [['price'], 'integer'],
+            [['price'], 'number'],
             [['title'], 'string', 'max' => 64],
             [['image_url', 'description'], 'string', 'max' => 255],
         ];
