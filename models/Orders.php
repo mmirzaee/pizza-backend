@@ -18,6 +18,13 @@ use Yii;
  */
 class Orders extends \yii\db\ActiveRecord
 {
+
+    const STATUS_SUBMITTED = 1;
+    const STATUS_IN_THE_WAY = 2;
+    const STATUS_DELIVERED = 3;
+    const STATUS_CANCELED = 0;
+
+
     /**
      * {@inheritdoc}
      */
