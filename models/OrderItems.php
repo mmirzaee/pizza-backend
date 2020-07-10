@@ -48,4 +48,20 @@ class OrderItems extends \yii\db\ActiveRecord
             'unit_price' => 'Unit Price',
         ];
     }
+
+    public function extraFields()
+    {
+        return ['order', 'item'];
+    }
+
+    public function getOrder()
+    {
+        return $this->hasOne(Orders::class, ['id' => 'order_id']);
+    }
+
+    public function getItem()
+    {
+        return $this->hasOne(Items::class, ['id' => 'item_id']);
+    }
+
 }

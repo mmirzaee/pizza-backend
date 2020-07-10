@@ -65,4 +65,14 @@ class Orders extends \yii\db\ActiveRecord
             'total' => 'Total',
         ];
     }
+
+    public function extraFields()
+    {
+        return ['items'];
+    }
+
+    public function getItems()
+    {
+        return $this->hasMany(OrderItems::class, ['order_id' => 'id']);
+    }
 }
