@@ -30,7 +30,7 @@ class OrdersController extends ActiveController
             'class' => JwtHttpBearerAuth::class,
         ];
 
-        $behaviors['authenticator']['except'] = ['place-order'];
+        $behaviors['authenticator']['optional'] = ['place-order'];
 
 
         return $behaviors;
@@ -61,7 +61,11 @@ class OrdersController extends ActiveController
             }
         }
 
-        $model->user_id = isset($post_data['user_id']) ? $post_data['user_id'] : 0;
+
+        $model->user_id = 0;
+        if ($user = \Yii::$app->user->getIdentity()) {
+            $model->user_id = $user->getId();
+        }
         $model->status = Orders::STATUS_SUBMITTED;
         $model->updated_at = time();
         $model->created_at = time();
